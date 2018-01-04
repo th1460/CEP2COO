@@ -4,9 +4,9 @@ library(httr)
 library(reticulate)
 library(berryFunctions)
 
-pycep <- import("pycep_correios")
+pycep = import("pycep_correios")
 
-cep2coona <- function(cep, chave){
+cep2coona = function(cep, chave){
 
 # Let's say we have a addresses
 address = try(paste(pycep$consultar_cep(cep)$cidade, 
