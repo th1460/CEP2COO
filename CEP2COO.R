@@ -6,7 +6,7 @@ library(berryFunctions)
 
 pycep = import("pycep_correios")
 
-cep2coo = function(cep){
+cep2coo = function(cep, chave){
 
 # Let's say we have a addresses
 address_ = try(paste(pycep$consultar_cep(cep)$end, 
