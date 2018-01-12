@@ -5,6 +5,9 @@ library(reticulate)
 library(berryFunctions)
 
 pycep = import("pycep_correios")
+urllib3 = import("urllib3")
+
+urllib3$disable_warnings(urllib3$disable_warnings())
 
 cep2coo = function(cep, chave){
 
