@@ -13,7 +13,7 @@ address_ = try(paste(pycep$consultar_cep(cep)$end,
                      pycep$consultar_cep(cep)$bairro,
                      pycep$consultar_cep(cep)$cidade, "Brasil"), silent = TRUE)
 
-address = ifelse(is.error(address_) == T, paste(cep, "Brasil"), address_) # Corrigindo CEP inválido
+address = ifelse(is.error(address_) == T, 999, address_) # Caso CEP inválido (999)
 
 # define geocoding google api url
 geo_url = "https://maps.googleapis.com/maps/api/geocode/xml?address="
