@@ -5,6 +5,10 @@ library(reticulate)
 library(berryFunctions)
 
 pycep = import("pycep_correios")
+urllib3 = import("urllib3")
+requests = import("requests")
+
+urllib3$disable_warnings(urllib3$exceptions$InsecureRequestWarning)
 
 cep2coona = function(cep, chave){
 
