@@ -19,7 +19,7 @@ cep2coo2 <- function(cep){
   address = ifelse(is.error(address_) == T, "-", address_) # Caso CEP invalido
   
   # Query no OSM
-  coo <- geocode(address, limit = 1)[,c("lat", "lon")]
+  coo <- geocode(iconv(address, to = "ASCII//TRANSLIT"), limit = 1)[,c("lat", "lon")]
   
   return(coo)
 }
