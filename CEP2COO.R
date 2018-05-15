@@ -8,7 +8,7 @@ requests <- import("requests") # pip install requests
 
 urllib3$disable_warnings(urllib3$exceptions$InsecureRequestWarning)
 
-cep2coo2 <- function(cep){
+cep2coo <- function(cep){
   
   # Consulta do endereço através do CEP
   
