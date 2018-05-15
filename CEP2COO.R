@@ -1,46 +1,26 @@
-# load package XML
-library(XML)
-library(httr)
 library(reticulate)
 library(berryFunctions)
+require(photon)
 
-pycep = import("pycep_correios")
-urllib3 = import("urllib3")
-requests = import("requests")
+pycep <- import("pycep_correios") # pip install pycep_correios
+urllib3 <- import("urllib3") # pip install urllib3
+requests <- import("requests") # pip install requests
 
 urllib3$disable_warnings(urllib3$exceptions$InsecureRequestWarning)
 
-cep2coo = function(cep, chave){
-
-# Let's say we have a addresses
-address_ = try(paste(pycep$consultar_cep(cep)$end, 
-                     pycep$consultar_cep(cep)$bairro,
-                     pycep$consultar_cep(cep)$cidade, "Brasil"), silent = TRUE)
-
-address = ifelse(is.error(address_) == T, "sem CEP", address_) # Caso CEP invalido
-
-# define geocoding google api url
-geo_url = "https://maps.googleapis.com/maps/api/geocode/xml?address="
-
-
-# replace spaces by '+' symbols in current address
-query = gsub(" ", "+", address)
-
-# create query
-geo_query = paste(geo_url, query, "&key=", chave, sep="")
-doc = htmlParse(rawToChar(GET(geo_query)$content))
+cep2coo2 <- function(cep){
   
-# extract latitude and longitude
-lat = xpathSApply(doc, "//location//lat", xmlValue)
-lon = xpathSApply(doc, "//location//lng", xmlValue)
-
-# convert as numeric
-lat = as.numeric(lat)
-lon = as.numeric(lon)
-
-# lat and lon in a matrix
-lat_ = ifelse(is.error(lat) == T, NA, lat)
-lon_ = ifelse(is.error(lon) == T, NA, lon)
-
-cbind(lat = lat_, lon = lon_)
+  # Consulta do endereço através do CEP
+  
+  address_ = try(paste(pycep$consultar_cep(cep)$end, # endereço
+                       pycep$consultar_cep(cep)$cidade, # cidade
+                       "Brasil"), silent = TRUE) # país
+  
+  address = ifelse(is.error(address_) == T, "-", address_) # Caso CEP invalido
+  
+  # Consulta no Open Street Map
+  
+  coo <- geocode(iconv(address, from = "UTF-8", to = "ASCII//TRANSLIT"), limit = 1)[,c("lat", "lon")]
+  
+  return(coo)
 }
