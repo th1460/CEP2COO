@@ -4,8 +4,21 @@ A função `cep2coo()` transforma o  CEP em dados de latitude e longitude. A funçã
 
 A consulta à API dos correios é feita pela função da biblioteca [pycep-correios](https://pypi.org/project/pycep-correios/) escrita em python.
 
-Após obter informações de endereço e cidade é feita uma consulta da latitude e longitude no OSM com a função `geocode` do pacote [photon](https://github.com/rCarto/photon) escrito para o R.
+Após obter informações de endereço e cidade é feita uma consulta da latitude e longitude no OSM com a função `geocode()` do pacote [photon](https://github.com/rCarto/photon) escrito para o R.
 
+## Bibliotecas necessárias em Python e R
+
+### Python
+
+- pycep_correios
+- urllib3
+- requests
+
+### R
+
+- reticulate
+- berryFunctions
+- photon
 
 ## Exemplo
 
