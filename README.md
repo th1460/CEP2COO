@@ -1,12 +1,12 @@
 # Transformar CEP em latitude e longitude
 
-A função `cep2coo()` transforma o  CEP em dados de latitude e longitude. A função usa recursos do Python para consultar a API dos Correios e R para consultar as coordenadas no [Open Street Map](https://www.openstreetmap.org) (OSM).
+A funÃ§Ã£o `cep2coo()` transforma o  CEP em dados de latitude e longitude. A funÃ§Ã£o usa recursos do Python para consultar a API dos Correios e R para consultar as coordenadas no [Open Street Map](https://www.openstreetmap.org) (OSM).
 
-A consulta à API dos correios é feita pela função da biblioteca [pycep-correios](https://pypi.org/project/pycep-correios/) escrita em python.
+A consulta Ã  API dos correios Ã© feita pela funÃ§Ã£o da biblioteca [pycep-correios](https://pypi.org/project/pycep-correios/) escrita em python.
 
-Após obter informações de endereço e cidade é feita uma consulta da latitude e longitude no OSM com a função `geocode()` do pacote [photon](https://github.com/rCarto/photon) escrito para o R.
+ApÃ³s obter informaÃ§Ãµes de endereÃ§o e cidade Ã© feita uma consulta da latitude e longitude no OSM com a funÃ§Ã£o `geocode()` do pacote [photon](https://github.com/rCarto/photon) escrito para o R.
 
-## Bibliotecas necessárias em Python e R
+## Bibliotecas necessÃ¡rias em Python e R
 
 ### Python
 
@@ -24,6 +24,10 @@ Após obter informações de endereço e cidade é feita uma consulta da latitude e l
 
 `cep2coo("20090003") # -22.90369 -43.1782`
 
-O resultado da latitude e longitude apresentará *missing value* se o CEP for inválido.
+O resultado da latitude e longitude apresentarÃ¡ *missing value* se o CEP for invÃ¡lido.
+
+## Update
+
+No pacote [rthop](https://github.com/th1460/rthop) estÃ¡ em desenvolvimento a funÃ§Ã£o `cep2coo` que no lugar da biblioteca `pycep_correios` Ã© utilizada uma API, tornando a rotina independente de Python.
 
 
